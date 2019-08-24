@@ -1,29 +1,19 @@
-# quiz
+My first handson on learning Vue.js
 
-## Project setup
-```
-npm install
-```
+using vue-cli 
 
-### Compiles and hot-reloads for development
-```
+Install Vue client
+
+npm install -g @vue/cli-init
+
+Create App 
+
+vue create quiz 
+
+Build 
+
+npm run build 
+
+RUn
+
 npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

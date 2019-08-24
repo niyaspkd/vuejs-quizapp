@@ -7,7 +7,9 @@
 
     <hr class="my-4">
     <b-list-group>
-    <b-list-group-item v-for="(answer,index) in shuffledAnswers" :key="index" @click="selectAnswer(index)" :class="[selectedIndex === index ? 'selected' : '' ]">
+    <b-list-group-item v-for="(answer,index) in shuffledAnswers" :key="index" @click="selectAnswer(index)" :class="[!answered && selectedIndex === index ? 'selected' : 
+    answered && correctIndex === index ? 'correct': 
+    answered && correctIndex && selectedIndex === index ? 'incorrect': '']">
 
 	{{ answer }}
     
@@ -21,7 +23,7 @@
 
     <b-button 
     variant="primary"
-    @click="submitAnswer" >Submit</b-button>
+    @click="submitAnswer" :disabled="selectedIndex===null || answered" >Submit</b-button>
     <b-button @click="next" variant="success" href="#">Next</b-button>
   </b-jumbotron>
  </div>
@@ -41,6 +43,7 @@
 				selectedIndex : null,
 				shuffledAnswers : [],
 				correctIndex: null,
+				answered: false
 				
 			}
 
@@ -59,7 +62,9 @@
 				immediate: true,
 				handler(){
 				this.selectedIndex = null
+				this.answered = false
 				this.shuffleAnswers()
+
 				}
 			}
 
@@ -75,7 +80,9 @@
 				if(this.selectedIndex === this.correctIndex){
 					isCorrect = true
 				}
+				this.answered = true
 				this.increment(isCorrect)
+
 			},
 			shuffleAnswers(){
 				let answers = [...this.CurrentQuestion.incorrect_answers, this.CurrentQuestion.correct_answer]
